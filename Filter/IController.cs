@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Filter
 {
-    public class Class1
+    internal interface IController
     {
+        void OnExecuting();
+
+        void OnExecuted();
+
+        void OnError(Exception ex);
     }
 }
