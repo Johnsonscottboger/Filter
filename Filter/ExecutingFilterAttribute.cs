@@ -9,6 +9,6 @@ namespace Filter
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
     public abstract class ExecutingFilterAttribute : FilterAttribute
     {
-        public abstract void Execute<T>(T data);
+        public abstract void Execute(MethodParameters[] param);
     }
 }

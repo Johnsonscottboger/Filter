@@ -15,71 +15,97 @@ namespace Test
 
             var test = new TestController();
 
-            context.Process(test.HelloWord, typeof(TestController));
+            context.Call(test.HelloWorld);
 
-            context.Process(test.ThrowException);
+            context.Call(test.HelloWorld, "A,ning");
+
+            context.Call(test.HelloWorld, "A,ning", DateTime.Now);
+
+
+            //context.Process(test.ThrowException);
 
             Console.WriteLine("End...");
-            Console.ReadLine();
+            Print(Console.ReadLine());
+
+            Console.ReadKey();
+        }
+
+        public static void Print(string line)
+        {
+            Console.WriteLine(line);
         }
     }
 
-    public class TestController : ControllerBase
+    public class TestController
     {
-        public override void OnExecuting()
-        {
-            Console.WriteLine($"{nameof(TestController)}.{nameof(OnExecuting)}");
-        }
-
-        public override void OnExecuted()
-        {
-            Console.WriteLine($"{nameof(TestController)}.{nameof(OnExecuted)}");
-        }
-
-        public override void OnError(Exception ex)
-        {
-            Console.WriteLine($"{nameof(TestController)}.{nameof(OnError)}:{ex.Message}");
-        }
+        [CustomExecutingFilter]
+        public string Name { get; set; }
 
         [CustomExecutingFilter]
-        [CustomExecutingFilter]
-        [CustomExecutedFilter]
-        public void HelloWord()
+        public void HelloWorld()
         {
             Console.WriteLine("Hello World");
         }
 
-
-        [CustomExecutingFilter]
+        [CustomExecutingFilter(Name = "名称")]
         [CustomExecutedFilter]
         [CustomErrorFilter]
-        public void ThrowException()
+        public void HelloWorld(string name)
         {
-            throw new ArgumentException("参数异常");
+            Console.WriteLine($"Hello World {name}");
         }
+
+        [CustomExecutingFilter]
+        public void HelloWorld(string name, DateTime dateTime)
+        {
+            Console.WriteLine($"Hello World {name} {dateTime}");
+        }
+
+        //[CustomExecutingFilter]
+        //[CustomExecutedFilter]
+        //[CustomErrorFilter]
+        //public void ThrowException()
+        //{
+        //    throw new ArgumentException("参数异常");
+        //}
     }
 
+    /// <summary>
+    /// 自定义执行前过滤器
+    /// </summary>
     public class CustomExecutingFilterAttribute : ExecutingFilterAttribute
     {
-        public override void Execute<T>(T data)
+        public string Name { get; set; }
+
+        public override void Execute(MethodParameters[] parameters)
         {
-            Console.WriteLine($"自定义过滤器：{nameof(CustomExecutingFilterAttribute)}, Data:{data}");
+            if(parameters != null)
+                Console.WriteLine($"自定义过滤器：{nameof(CustomExecutingFilterAttribute)}, Data:{this.Name}, Param:{string.Join(", ", parameters?.Select(p => p.ToString()))}");
+            else
+                Console.WriteLine($"自定义过滤器：{nameof(CustomExecutingFilterAttribute)}, Data:{this.Name}");
         }
     }
 
+    /// <summary>
+    /// 自定义执行后过滤器
+    /// </summary>
     public class CustomExecutedFilterAttribute : ExecutedFilterAttribute
     {
-        public override void Execute<T>(T data)
+        public override void Execute<TReturn>(MethodParameters[] parameters, TReturn returned)
         {
-            Console.WriteLine($"自定义过滤器：{nameof(CustomExecutedFilterAttribute)}, Data:{data}");
+            Console.WriteLine($"自定义过滤器：{nameof(CustomExecutedFilterAttribute)},Param:{string.Join(", ", parameters?.Select(p => p.ToString()))}, Return:{returned}");
+            Console.WriteLine("=====================================================================\r\n");
         }
     }
 
+    /// <summary>
+    /// 自定义错误过滤器
+    /// </summary>
     public class CustomErrorFilterAttribute : ErrorFilterAttribute
     {
-        public override void Execute<T>(T data, Exception ex)
+        public override void Execute(MethodParameters[] parameters, Exception ex)
         {
-            Console.WriteLine($"自定义过滤器：{nameof(CustomErrorFilterAttribute)}, Data:{data}, Exception:{ex}");
+            Console.WriteLine($"自定义过滤器：{nameof(CustomErrorFilterAttribute)}, Param:{string.Join(", ", parameters?.Select(p => p.ToString()))},Exception:{ex}");
         }
     }
 }

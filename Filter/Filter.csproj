@@ -40,13 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControllerBase.cs" />
     <Compile Include="ErrorFilterAttribute.cs" />
     <Compile Include="ExecutedFilterAttribute.cs" />
     <Compile Include="ExecutingFilterAttribute.cs" />
     <Compile Include="FilterAttribute.cs" />
     <Compile Include="FilterContext.cs" />
-    <Compile Include="IController.cs" />
+    <Compile Include="MethodParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

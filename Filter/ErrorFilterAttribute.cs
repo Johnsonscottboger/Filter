@@ -9,6 +9,6 @@ namespace Filter
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
     public abstract class ErrorFilterAttribute : FilterAttribute
     {
-        public abstract void Execute<T>(T data, Exception ex);
+        public abstract void Execute(MethodParameters[] parameters, Exception ex);
     }
 }
