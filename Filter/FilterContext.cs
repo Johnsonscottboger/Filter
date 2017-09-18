@@ -74,7 +74,9 @@ namespace Filter
             }
         }
 
-        public void Call<T>(Action<T> action, T p1)
+        public void Call<T>(
+            Action<T> action, 
+            T p1)
         {
             Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
             MethodParameters[] methodParameters = null;
@@ -105,7 +107,9 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2>(Action<T1, T2> action, T1 p1, T2 p2)
+        public void Call<T1, T2>(
+            Action<T1, T2> action, 
+            T1 p1, T2 p2)
         {
             Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
             MethodParameters[] methodParameters = null;
@@ -136,6 +140,467 @@ namespace Filter
             }
         }
 
+        public void Call<T1, T2, T3>(
+            Action<T1, T2, T3> action,
+            T1 p1, T2 p2, T3 p3)
+        {
+            Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
+            MethodParameters[] methodParameters = null;
+            try
+            {
+                methodParameters = CreateMethodParameters(action.Method, p1, p2, p3);
+                //执行前
+                this._executingFilters?.ForEach(p =>
+                {
+                    p.Execute(methodParameters);
+                });
+
+                //执行
+                action?.Invoke(p1, p2, p3);
+            }
+            catch (Exception ex)
+            {
+                //异常
+                if (this._executingError == null || this._executingError.Count == 0)
+                    throw;
+                else
+                    this._executingError?.ForEach(p => p.Execute(methodParameters, ex));
+            }
+            finally
+            {
+                //执行后
+                this._executedFileters?.ForEach(p => p.Execute(methodParameters, 0));
+            }
+        }
+
+        public void Call<T1, T2, T3, T4>(
+            Action<T1, T2, T3, T4> action,
+            T1 p1, T2 p2, T3 p3, T4 p4)
+        {
+            Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
+            MethodParameters[] methodParameters = null;
+            try
+            {
+                methodParameters = CreateMethodParameters(action.Method, p1, p2, p3, p4);
+                //执行前
+                this._executingFilters?.ForEach(p =>
+                {
+                    p.Execute(methodParameters);
+                });
+
+                //执行
+                action?.Invoke(p1, p2, p3, p4);
+            }
+            catch (Exception ex)
+            {
+                //异常
+                if (this._executingError == null || this._executingError.Count == 0)
+                    throw;
+                else
+                    this._executingError?.ForEach(p => p.Execute(methodParameters, ex));
+            }
+            finally
+            {
+                //执行后
+                this._executedFileters?.ForEach(p => p.Execute(methodParameters, 0));
+            }
+        }
+
+        public void Call<T1, T2, T3, T4, T5>(
+            Action<T1, T2, T3, T4, T5> action,
+            T1 p1, T2 p2, T3 p3, T4 p4, T5 p5)
+        {
+            Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
+            MethodParameters[] methodParameters = null;
+            try
+            {
+                methodParameters = CreateMethodParameters(action.Method, p1, p2, p3, p4, p5);
+                //执行前
+                this._executingFilters?.ForEach(p =>
+                {
+                    p.Execute(methodParameters);
+                });
+
+                //执行
+                action?.Invoke(p1, p2, p3, p4, p5);
+            }
+            catch (Exception ex)
+            {
+                //异常
+                if (this._executingError == null || this._executingError.Count == 0)
+                    throw;
+                else
+                    this._executingError?.ForEach(p => p.Execute(methodParameters, ex));
+            }
+            finally
+            {
+                //执行后
+                this._executedFileters?.ForEach(p => p.Execute(methodParameters, 0));
+            }
+        }
+
+        public void Call<T1, T2, T3, T4, T5, T6>(
+            Action<T1, T2, T3, T4, T5, T6> action,
+            T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6)
+        {
+            Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
+            MethodParameters[] methodParameters = null;
+            try
+            {
+                methodParameters = CreateMethodParameters(action.Method, p1, p2, p3, p4, p5, p6);
+                //执行前
+                this._executingFilters?.ForEach(p =>
+                {
+                    p.Execute(methodParameters);
+                });
+
+                //执行
+                action?.Invoke(p1, p2, p3, p4, p5, p6);
+            }
+            catch (Exception ex)
+            {
+                //异常
+                if (this._executingError == null || this._executingError.Count == 0)
+                    throw;
+                else
+                    this._executingError?.ForEach(p => p.Execute(methodParameters, ex));
+            }
+            finally
+            {
+                //执行后
+                this._executedFileters?.ForEach(p => p.Execute(methodParameters, 0));
+            }
+        }
+
+        public void Call<T1, T2, T3, T4, T5, T6, T7>(
+            Action<T1, T2, T3, T4, T5, T6, T7> action,
+            T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7)
+        {
+            Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
+            MethodParameters[] methodParameters = null;
+            try
+            {
+                methodParameters = CreateMethodParameters(action.Method, p1, p2, p3, p4, p5, p6, p7);
+                //执行前
+                this._executingFilters?.ForEach(p =>
+                {
+                    p.Execute(methodParameters);
+                });
+
+                //执行
+                action?.Invoke(p1, p2, p3, p4, p5, p6, p7);
+            }
+            catch (Exception ex)
+            {
+                //异常
+                if (this._executingError == null || this._executingError.Count == 0)
+                    throw;
+                else
+                    this._executingError?.ForEach(p => p.Execute(methodParameters, ex));
+            }
+            finally
+            {
+                //执行后
+                this._executedFileters?.ForEach(p => p.Execute(methodParameters, 0));
+            }
+        }
+
+        public void Call<T1, T2, T3, T4, T5, T6, T7, T8>(
+            Action<T1, T2, T3, T4, T5, T6, T7, T8> action,
+            T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8)
+        {
+            Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
+            MethodParameters[] methodParameters = null;
+            try
+            {
+                methodParameters = CreateMethodParameters(action.Method, p1, p2, p3, p4, p5, p6, p7, p8);
+                //执行前
+                this._executingFilters?.ForEach(p =>
+                {
+                    p.Execute(methodParameters);
+                });
+
+                //执行
+                action?.Invoke(p1, p2, p3, p4, p5, p6, p7, p8);
+            }
+            catch (Exception ex)
+            {
+                //异常
+                if (this._executingError == null || this._executingError.Count == 0)
+                    throw;
+                else
+                    this._executingError?.ForEach(p => p.Execute(methodParameters, ex));
+            }
+            finally
+            {
+                //执行后
+                this._executedFileters?.ForEach(p => p.Execute(methodParameters, 0));
+            }
+        }
+
+        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
+            Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action,
+            T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9)
+        {
+            Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
+            MethodParameters[] methodParameters = null;
+            try
+            {
+                methodParameters = CreateMethodParameters(action.Method, p1, p2, p3, p4, p5, p6, p7, p8, p9);
+                //执行前
+                this._executingFilters?.ForEach(p =>
+                {
+                    p.Execute(methodParameters);
+                });
+
+                //执行
+                action?.Invoke(p1, p2, p3, p4, p5, p6, p7, p8, p9);
+            }
+            catch (Exception ex)
+            {
+                //异常
+                if (this._executingError == null || this._executingError.Count == 0)
+                    throw;
+                else
+                    this._executingError?.ForEach(p => p.Execute(methodParameters, ex));
+            }
+            finally
+            {
+                //执行后
+                this._executedFileters?.ForEach(p => p.Execute(methodParameters, 0));
+            }
+        }
+
+        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
+            Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> action,
+            T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10)
+        {
+            Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
+            MethodParameters[] methodParameters = null;
+            try
+            {
+                methodParameters = CreateMethodParameters(action.Method, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
+                //执行前
+                this._executingFilters?.ForEach(p =>
+                {
+                    p.Execute(methodParameters);
+                });
+
+                //执行
+                action?.Invoke(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10);
+            }
+            catch (Exception ex)
+            {
+                //异常
+                if (this._executingError == null || this._executingError.Count == 0)
+                    throw;
+                else
+                    this._executingError?.ForEach(p => p.Execute(methodParameters, ex));
+            }
+            finally
+            {
+                //执行后
+                this._executedFileters?.ForEach(p => p.Execute(methodParameters, 0));
+            }
+        }
+
+        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
+            Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> action,
+            T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11)
+        {
+            Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
+            MethodParameters[] methodParameters = null;
+            try
+            {
+                methodParameters = CreateMethodParameters(action.Method, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11);
+                //执行前
+                this._executingFilters?.ForEach(p =>
+                {
+                    p.Execute(methodParameters);
+                });
+
+                //执行
+                action?.Invoke(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11);
+            }
+            catch (Exception ex)
+            {
+                //异常
+                if (this._executingError == null || this._executingError.Count == 0)
+                    throw;
+                else
+                    this._executingError?.ForEach(p => p.Execute(methodParameters, ex));
+            }
+            finally
+            {
+                //执行后
+                this._executedFileters?.ForEach(p => p.Execute(methodParameters, 0));
+            }
+        }
+
+        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
+            Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> action,
+            T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12)
+        {
+            Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
+            MethodParameters[] methodParameters = null;
+            try
+            {
+                methodParameters = CreateMethodParameters(action.Method, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12);
+                //执行前
+                this._executingFilters?.ForEach(p =>
+                {
+                    p.Execute(methodParameters);
+                });
+
+                //执行
+                action?.Invoke(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12);
+            }
+            catch (Exception ex)
+            {
+                //异常
+                if (this._executingError == null || this._executingError.Count == 0)
+                    throw;
+                else
+                    this._executingError?.ForEach(p => p.Execute(methodParameters, ex));
+            }
+            finally
+            {
+                //执行后
+                this._executedFileters?.ForEach(p => p.Execute(methodParameters, 0));
+            }
+        }
+
+        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
+            Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> action,
+            T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12, T13 p13)
+        {
+            Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
+            MethodParameters[] methodParameters = null;
+            try
+            {
+                methodParameters = CreateMethodParameters(action.Method, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13);
+                //执行前
+                this._executingFilters?.ForEach(p =>
+                {
+                    p.Execute(methodParameters);
+                });
+
+                //执行
+                action?.Invoke(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13);
+            }
+            catch (Exception ex)
+            {
+                //异常
+                if (this._executingError == null || this._executingError.Count == 0)
+                    throw;
+                else
+                    this._executingError?.ForEach(p => p.Execute(methodParameters, ex));
+            }
+            finally
+            {
+                //执行后
+                this._executedFileters?.ForEach(p => p.Execute(methodParameters, 0));
+            }
+        }
+
+        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
+            Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> action,
+            T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12, T13 p13, T14 p14)
+        {
+            Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
+            MethodParameters[] methodParameters = null;
+            try
+            {
+                methodParameters = CreateMethodParameters(action.Method, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14);
+                //执行前
+                this._executingFilters?.ForEach(p =>
+                {
+                    p.Execute(methodParameters);
+                });
+
+                //执行
+                action?.Invoke(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14);
+            }
+            catch (Exception ex)
+            {
+                //异常
+                if (this._executingError == null || this._executingError.Count == 0)
+                    throw;
+                else
+                    this._executingError?.ForEach(p => p.Execute(methodParameters, ex));
+            }
+            finally
+            {
+                //执行后
+                this._executedFileters?.ForEach(p => p.Execute(methodParameters, 0));
+            }
+        }
+
+        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
+            Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> action,
+            T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12, T13 p13, T14 p14, T15 p15)
+        {
+            Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
+            MethodParameters[] methodParameters = null;
+            try
+            {
+                methodParameters = CreateMethodParameters(action.Method, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15);
+                //执行前
+                this._executingFilters?.ForEach(p =>
+                {
+                    p.Execute(methodParameters);
+                });
+
+                //执行
+                action?.Invoke(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15);
+            }
+            catch (Exception ex)
+            {
+                //异常
+                if (this._executingError == null || this._executingError.Count == 0)
+                    throw;
+                else
+                    this._executingError?.ForEach(p => p.Execute(methodParameters, ex));
+            }
+            finally
+            {
+                //执行后
+                this._executedFileters?.ForEach(p => p.Execute(methodParameters, 0));
+            }
+        }
+
+        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(
+            Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> action,
+            T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12, T13 p13, T14 p14, T15 p15, T16 p16)
+        {
+            Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
+            MethodParameters[] methodParameters = null;
+            try
+            {
+                methodParameters = CreateMethodParameters(action.Method, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16);
+                //执行前
+                this._executingFilters?.ForEach(p =>
+                {
+                    p.Execute(methodParameters);
+                });
+
+                //执行
+                action?.Invoke(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16);
+            }
+            catch (Exception ex)
+            {
+                //异常
+                if (this._executingError == null || this._executingError.Count == 0)
+                    throw;
+                else
+                    this._executingError?.ForEach(p => p.Execute(methodParameters, ex));
+            }
+            finally
+            {
+                //执行后
+                this._executedFileters?.ForEach(p => p.Execute(methodParameters, 0));
+            }
+        }
 
         /// <summary>
         /// 创建方法参数对象
