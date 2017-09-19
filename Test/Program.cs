@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Filter;
+using Filter.Attributs;
+using Filter.Model;
 
 namespace Test
 {
@@ -34,11 +36,6 @@ namespace Test
 
             Console.WriteLine("End...");
             Console.ReadKey();
-        }
-
-        public static void Print(string line)
-        {
-            Console.WriteLine(line);
         }
     }
 

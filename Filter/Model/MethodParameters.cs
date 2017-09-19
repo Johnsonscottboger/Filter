@@ -5,23 +5,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Filter
+namespace Filter.Model
 {
+    /// <summary>
+    /// 方法参数
+    /// </summary>
     public class MethodParameters
     {
         
     }
 
-    /// <summary>
-    /// 节点
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
     public class MethodParameter<T> : MethodParameters
     {
+        /// <summary>
+        /// 参数类型
+        /// </summary>
         public Type Type { get; set; }
 
+        /// <summary>
+        /// 参数名称
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// 实参
+        /// </summary>
         public T Value { get; set; }
 
         public override string ToString()

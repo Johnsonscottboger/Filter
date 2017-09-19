@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using Filter.Attributs;
+using Filter.Model;
 
 namespace Filter
 {
@@ -16,6 +16,10 @@ namespace Filter
         private List<ExecutedFilterAttribute> _executedFileters = new List<ExecutedFilterAttribute>();
         private List<ErrorFilterAttribute> _executingError = new List<ErrorFilterAttribute>();
 
+        /// <summary>
+        /// 初始化过滤器
+        /// </summary>
+        /// <param name="filters">方法过滤器</param>
         private void Init(object[] filters)
         {
             this._executingFilters.Clear();

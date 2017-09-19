@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Filter
+namespace Filter.Attributs
 {
+    /// <summary>
+    /// 抽象过滤器基类
+    /// </summary>
     public abstract class FilterAttribute : Attribute
     {
         
