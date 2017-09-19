@@ -21,12 +21,18 @@ namespace Test
 
             context.Call(test.HelloWorld, "A,ning", DateTime.Now);
 
+            var add1 = context.Call(test.Add, 1, 2);
+            Console.WriteLine($"Add1 Result: {add1}");
 
-            //context.Process(test.ThrowException);
+            var add2 = context.Call(test.Add, 1, 2, 3);
+            Console.WriteLine($"Add2 Result: {add2}");
+
+            var add3 = context.Call(test.AddException);
+            Console.WriteLine($"Add3 Result: {add3}");
+
+            context.Call(test.ThrowException);
 
             Console.WriteLine("End...");
-            Print(Console.ReadLine());
-
             Console.ReadKey();
         }
 
@@ -39,9 +45,8 @@ namespace Test
     public class TestController
     {
         [CustomExecutingFilter]
-        public string Name { get; set; }
-
-        [CustomExecutingFilter]
+        [CustomExecutedFilter]
+        [CustomErrorFilter]
         public void HelloWorld()
         {
             Console.WriteLine("Hello World");
@@ -56,18 +61,44 @@ namespace Test
         }
 
         [CustomExecutingFilter]
+        [CustomExecutedFilter]
+        [CustomErrorFilter]
         public void HelloWorld(string name, DateTime dateTime)
         {
             Console.WriteLine($"Hello World {name} {dateTime}");
         }
 
-        //[CustomExecutingFilter]
-        //[CustomExecutedFilter]
-        //[CustomErrorFilter]
-        //public void ThrowException()
-        //{
-        //    throw new ArgumentException("参数异常");
-        //}
+        [CustomExecutingFilter]
+        [CustomExecutedFilter]
+        [CustomErrorFilter]
+        public int Add(int a, int b)
+        {
+            return a + b;
+        }
+
+        [CustomExecutingFilter]
+        [CustomExecutedFilter]
+        [CustomErrorFilter]
+        public int Add(int a, int b, int c)
+        {
+            return a + b + c;
+        }
+
+        [CustomExecutingFilter]
+        [CustomExecutedFilter]
+        [CustomErrorFilter]
+        public int AddException()
+        {
+            throw new NotSupportedException();
+        }
+
+        [CustomExecutingFilter]
+        [CustomExecutedFilter]
+        [CustomErrorFilter]
+        public void ThrowException()
+        {
+            throw new ArgumentException("参数异常");
+        }
     }
 
     /// <summary>
@@ -79,10 +110,10 @@ namespace Test
 
         public override void Execute(MethodParameters[] parameters)
         {
-            if(parameters != null)
-                Console.WriteLine($"自定义过滤器：{nameof(CustomExecutingFilterAttribute)}, Data:{this.Name}, Param:{string.Join(", ", parameters?.Select(p => p.ToString()))}");
+            if (parameters != null)
+                Console.WriteLine($"执行前过滤器：{nameof(CustomExecutingFilterAttribute)}, Data:{this.Name}, Param:{string.Join(", ", parameters?.Select(p => p.ToString()))}");
             else
-                Console.WriteLine($"自定义过滤器：{nameof(CustomExecutingFilterAttribute)}, Data:{this.Name}");
+                Console.WriteLine($"执行前过滤器：{nameof(CustomExecutingFilterAttribute)}, Data:{this.Name}");
         }
     }
 
@@ -93,7 +124,10 @@ namespace Test
     {
         public override void Execute<TReturn>(MethodParameters[] parameters, TReturn returned)
         {
-            Console.WriteLine($"自定义过滤器：{nameof(CustomExecutedFilterAttribute)},Param:{string.Join(", ", parameters?.Select(p => p.ToString()))}, Return:{returned}");
+            if (parameters != null)
+                Console.WriteLine($"执行后过滤器：{nameof(CustomExecutedFilterAttribute)},Param:{string.Join(", ", parameters?.Select(p => p.ToString()))}, Return:{returned}");
+            else
+                Console.WriteLine($"执行后过滤器：{nameof(CustomExecutedFilterAttribute)},Return:{returned}");
             Console.WriteLine("=====================================================================\r\n");
         }
     }
@@ -105,7 +139,12 @@ namespace Test
     {
         public override void Execute(MethodParameters[] parameters, Exception ex)
         {
-            Console.WriteLine($"自定义过滤器：{nameof(CustomErrorFilterAttribute)}, Param:{string.Join(", ", parameters?.Select(p => p.ToString()))},Exception:{ex}");
+            Console.ForegroundColor = ConsoleColor.Red;
+            if(parameters != null)
+                Console.WriteLine($"异常过滤器：{nameof(CustomErrorFilterAttribute)}, Param:{string.Join(", ", parameters?.Select(p => p.ToString()))},Exception:{ex}");
+            else
+                Console.WriteLine($"异常过滤器：{nameof(CustomErrorFilterAttribute)}, Exception:{ex}");
+            Console.ResetColor();
         }
     }
 }
