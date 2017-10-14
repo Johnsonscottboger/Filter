@@ -17,29 +17,20 @@ namespace Test
 
             var test = new TestController();
 
-            context.Call(test.HelloWorld);
+            var m = EmitGenerator<IController>.GenerateProxy(test);
+            m.Add(1, 2);
+            m.Add(1, 2, 3);
+            m.Add(1, 2, 3, 4);
+            m.AddException();
+            m.HelloWorld();
 
-            context.Call(test.HelloWorld, "A,ning");
-
-            context.Call(test.HelloWorld, "A,ning", DateTime.Now);
-
-            var add1 = context.Call(test.Add, 1, 2);
-            Console.WriteLine($"Add1 Result: {add1}");
-
-            var add2 = context.Call(test.Add, 1, 2, 3);
-            Console.WriteLine($"Add2 Result: {add2}");
-
-            var add3 = context.Call(test.AddException);
-            Console.WriteLine($"Add3 Result: {add3}");
-
-            context.Call(test.ThrowException);
 
             Console.WriteLine("End...");
             Console.ReadKey();
         }
     }
 
-    public class TestController
+    public class TestController : IController
     {
         [CustomExecutingFilter]
         [CustomExecutedFilter]
@@ -96,6 +87,18 @@ namespace Test
         {
             throw new ArgumentException("参数异常");
         }
+
+        [CustomErrorFilter]
+        public int Add(int a, int b, int c, int d)
+        {
+            throw new NotImplementedException();
+        }
+
+        [CustomErrorFilter]
+        public int Add(int a, int b, int c, int d, int e)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     /// <summary>
@@ -137,7 +140,7 @@ namespace Test
         public override void Execute(MethodParameters[] parameters, Exception ex)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            if(parameters != null)
+            if (parameters != null)
                 Console.WriteLine($"异常过滤器：{nameof(CustomErrorFilterAttribute)}, Param:{string.Join(", ", parameters?.Select(p => p.ToString()))},Exception:{ex}");
             else
                 Console.WriteLine($"异常过滤器：{nameof(CustomErrorFilterAttribute)}, Exception:{ex}");

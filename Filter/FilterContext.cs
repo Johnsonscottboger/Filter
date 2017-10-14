@@ -49,7 +49,7 @@ namespace Filter
         }
 
 
-        public void Call(Action action)
+        public void CallA(Action action)
         {
             Init(action.Method.GetCustomAttributes(typeof(FilterAttribute), true));
             try
@@ -78,7 +78,7 @@ namespace Filter
             }
         }
 
-        public void Call<T>(
+        public void CallA<T>(
             Action<T> action,
             T p1)
         {
@@ -111,7 +111,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2>(
+        public void CallA<T1, T2>(
             Action<T1, T2> action,
             T1 p1, T2 p2)
         {
@@ -144,7 +144,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2, T3>(
+        public void CallA<T1, T2, T3>(
             Action<T1, T2, T3> action,
             T1 p1, T2 p2, T3 p3)
         {
@@ -177,7 +177,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2, T3, T4>(
+        public void CallA<T1, T2, T3, T4>(
             Action<T1, T2, T3, T4> action,
             T1 p1, T2 p2, T3 p3, T4 p4)
         {
@@ -210,7 +210,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2, T3, T4, T5>(
+        public void CallA<T1, T2, T3, T4, T5>(
             Action<T1, T2, T3, T4, T5> action,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5)
         {
@@ -243,7 +243,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2, T3, T4, T5, T6>(
+        public void CallA<T1, T2, T3, T4, T5, T6>(
             Action<T1, T2, T3, T4, T5, T6> action,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6)
         {
@@ -276,7 +276,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2, T3, T4, T5, T6, T7>(
+        public void CallA<T1, T2, T3, T4, T5, T6, T7>(
             Action<T1, T2, T3, T4, T5, T6, T7> action,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7)
         {
@@ -309,7 +309,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2, T3, T4, T5, T6, T7, T8>(
+        public void CallA<T1, T2, T3, T4, T5, T6, T7, T8>(
             Action<T1, T2, T3, T4, T5, T6, T7, T8> action,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8)
         {
@@ -342,7 +342,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
+        public void CallA<T1, T2, T3, T4, T5, T6, T7, T8, T9>(
             Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9)
         {
@@ -375,7 +375,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
+        public void CallA<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
             Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> action,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10)
         {
@@ -408,7 +408,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
+        public void CallA<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
             Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> action,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11)
         {
@@ -441,7 +441,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
+        public void CallA<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
             Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> action,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12)
         {
@@ -474,7 +474,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
+        public void CallA<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
             Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> action,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12, T13 p13)
         {
@@ -507,7 +507,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
+        public void CallA<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
             Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> action,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12, T13 p13, T14 p14)
         {
@@ -540,7 +540,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
+        public void CallA<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
             Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> action,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12, T13 p13, T14 p14, T15 p15)
         {
@@ -573,7 +573,7 @@ namespace Filter
             }
         }
 
-        public void Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(
+        public void CallA<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(
             Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> action,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12, T13 p13, T14 p14, T15 p15, T16 p16)
         {
@@ -606,7 +606,7 @@ namespace Filter
             }
         }
 
-        public TResult Call<TResult>(Func<TResult> func)
+        public TResult CallF<TResult>(Func<TResult> func)
         {
             TResult result = default(TResult);
             Init(func.Method.GetCustomAttributes(typeof(FilterAttribute), true));
@@ -637,7 +637,7 @@ namespace Filter
             return result;
         }
 
-        public TResult Call<TResult, T1>(
+        public TResult CallF<TResult, T1>(
            Func<T1, TResult> func,
            T1 p1)
         {
@@ -672,7 +672,7 @@ namespace Filter
             return result;
         }
 
-        public TResult Call<TResult, T1, T2>(
+        public TResult CallF<TResult, T1, T2>(
            Func<T1, T2, TResult> func,
            T1 p1, T2 p2)
         {
@@ -707,7 +707,7 @@ namespace Filter
             return result;
         }
 
-        public TResult Call<TResult, T1, T2, T3>(
+        public TResult CallF<TResult, T1, T2, T3>(
            Func<T1, T2, T3, TResult> func,
            T1 p1, T2 p2, T3 p3)
         {
@@ -742,7 +742,7 @@ namespace Filter
             return result;
         }
 
-        public TResult Call<TResult, T1, T2, T3, T4>(
+        public TResult CallF<TResult, T1, T2, T3, T4>(
            Func<T1, T2, T3, T4, TResult> func,
            T1 p1, T2 p2, T3 p3, T4 p4)
         {
@@ -777,7 +777,7 @@ namespace Filter
             return result;
         }
 
-        public TResult Call<TResult, T1, T2, T3, T4, T5>(
+        public TResult CallF<TResult, T1, T2, T3, T4, T5>(
            Func<T1, T2, T3, T4, T5, TResult> func,
            T1 p1, T2 p2, T3 p3, T4 p4, T5 p5)
         {
@@ -812,7 +812,7 @@ namespace Filter
             return result;
         }
 
-        public TResult Call<TResult, T1, T2, T3, T4, T5, T6>(
+        public TResult CallF<TResult, T1, T2, T3, T4, T5, T6>(
             Func<T1, T2, T3, T4, T5, T6, TResult> func,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6)
         {
@@ -847,7 +847,7 @@ namespace Filter
             return result;
         }
 
-        public TResult Call<TResult, T1, T2, T3, T4, T5, T6, T7>(
+        public TResult CallF<TResult, T1, T2, T3, T4, T5, T6, T7>(
             Func<T1, T2, T3, T4, T5, T6, T7, TResult> func,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7)
         {
@@ -882,7 +882,7 @@ namespace Filter
             return result;
         }
 
-        public TResult Call<TResult, T1, T2, T3, T4, T5, T6, T7, T8>(
+        public TResult CallF<TResult, T1, T2, T3, T4, T5, T6, T7, T8>(
             Func<T1, T2, T3, T4, T5, T6, T7, T8, TResult> func,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8)
         {
@@ -918,7 +918,7 @@ namespace Filter
         }
 
 
-        public TResult Call<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9>(
+        public TResult CallF<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9>(
             Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, TResult> func,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9)
         {
@@ -953,7 +953,7 @@ namespace Filter
             return result;
         }
 
-        public TResult Call<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
+        public TResult CallF<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(
             Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TResult> func,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10)
         {
@@ -989,7 +989,7 @@ namespace Filter
         }
 
 
-        public TResult Call<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
+        public TResult CallF<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(
             Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TResult> func,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11)
         {
@@ -1025,7 +1025,7 @@ namespace Filter
         }
 
 
-        public TResult Call<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
+        public TResult CallF<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(
             Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TResult> func,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12)
         {
@@ -1061,7 +1061,7 @@ namespace Filter
         }
 
 
-        public TResult Call<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
+        public TResult CallF<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(
             Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TResult> func,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12, T13 p13)
         {
@@ -1097,7 +1097,7 @@ namespace Filter
         }
 
 
-        public TResult Call<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
+        public TResult CallF<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(
             Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TResult> func,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12, T13 p13, T14 p14)
         {
@@ -1133,7 +1133,7 @@ namespace Filter
         }
 
 
-        public TResult Call<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
+        public TResult CallF<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(
             Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TResult> func,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12, T13 p13, T14 p14, T15 p15)
         {
@@ -1169,7 +1169,7 @@ namespace Filter
         }
 
 
-        public TResult Call<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(
+        public TResult CallF<TResult, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(
             Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, TResult> func,
             T1 p1, T2 p2, T3 p3, T4 p4, T5 p5, T6 p6, T7 p7, T8 p8, T9 p9, T10 p10, T11 p11, T12 p12, T13 p13, T14 p14, T15 p15, T16 p16)
         {
@@ -1203,6 +1203,7 @@ namespace Filter
             }
             return result;
         }
+
 
         /// <summary>
         /// 创建方法参数对象
