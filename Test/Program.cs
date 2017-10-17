@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Filter;
-using Filter.Attributs;
+using Filter.Attributes;
 using Filter.Model;
+using Test;
+using System.Diagnostics;
+using System.Linq.Expressions;
 
 namespace Test
 {
@@ -13,16 +16,32 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            var context = new FilterContext();
+            //实例化接口实现类
+            var repo = new Repository();
+            //动态生成代理
+            var repoProxy = EmitGenerator<IRepository>.GenerateProxy(repo);
 
-            var test = new TestController();
+            //使用代理调用方法
+            repoProxy.Add("Hello");
+            repoProxy.Add("World");
+            repoProxy.Remove("World");
+            repoProxy.Update("A,ning", p => p == "World");   //将会抛出列表中不存在项异常
 
-            var m = EmitGenerator<IController>.GenerateProxy(test);
-            m.Add(1, 2);
-            m.Add(1, 2, 3);
-            m.Add(1, 2, 3, 4);
-            m.AddException();
-            m.HelloWorld();
+
+
+
+
+
+
+
+            //var repoGeneric = new RepositoryGeneric<string>();
+            //var repoGenProxy = EmitGenerator<IRepositoryGeneric<string>>.GenerateProxy(repoGeneric);
+            ////使用代理调用方法
+            //repoGenProxy.Add("Hello");
+            //repoGenProxy.Add("World");
+            //repoGenProxy.Remove("World");
+            //repoGenProxy.Update("A,ning", p => p == "World");   //将会抛出列表中不存在项异常
+
 
 
             Console.WriteLine("End...");
@@ -30,74 +49,73 @@ namespace Test
         }
     }
 
-    public class TestController : IController
+    public class Repository : IRepository
     {
+        private List<string> list = new List<string>();
+
         [CustomExecutingFilter]
         [CustomExecutedFilter]
         [CustomErrorFilter]
-        public void HelloWorld()
+        public void Add<T>(T entity)
         {
-            Console.WriteLine("Hello World");
-        }
-
-        [CustomExecutingFilter(Name = "名称")]
-        [CustomExecutedFilter]
-        [CustomErrorFilter]
-        public void HelloWorld(string name)
-        {
-            Console.WriteLine($"Hello World {name}");
+            list.Add(entity.ToString());
+            Console.WriteLine($"Added: Count-{list.Count}");
         }
 
         [CustomExecutingFilter]
         [CustomExecutedFilter]
         [CustomErrorFilter]
-        public void HelloWorld(string name, DateTime dateTime)
+        public void Remove<T>(T entity)
         {
-            Console.WriteLine($"Hello World {name} {dateTime}");
+            list.Remove(entity.ToString());
+            Console.WriteLine($"Removed: Count-{list.Count}");
         }
 
         [CustomExecutingFilter]
         [CustomExecutedFilter]
         [CustomErrorFilter]
-        public int Add(int a, int b)
+        public void Update<T>(T entity, Func<T, bool> predicate)
         {
-            return a + b;
+            var item = list.FirstOrDefault(p => predicate(entity));
+            if (item == null)
+                throw new Exception("列表中不存在更新的项");
+            list.Remove(item);
+            list.Add(entity.ToString());
+        }
+    }
+
+    public class RepositoryGeneric<T> : IRepositoryGeneric<T>
+    {
+        private List<string> list = new List<string>();
+
+        [CustomExecutingFilter]
+        [CustomExecutedFilter]
+        [CustomErrorFilter]
+        public void Add(T entity)
+        {
+            list.Add(entity.ToString());
+            Console.WriteLine($"Added: Count-{list.Count}");
         }
 
         [CustomExecutingFilter]
         [CustomExecutedFilter]
         [CustomErrorFilter]
-        public int Add(int a, int b, int c)
+        public void Remove(T entity)
         {
-            return a + b + c;
+            list.Remove(entity.ToString());
+            Console.WriteLine($"Removed: Count-{list.Count}");
         }
 
         [CustomExecutingFilter]
         [CustomExecutedFilter]
         [CustomErrorFilter]
-        public int AddException()
+        public void Update(T entity, Func<T, bool> predicate)
         {
-            throw new NotSupportedException();
-        }
-
-        [CustomExecutingFilter]
-        [CustomExecutedFilter]
-        [CustomErrorFilter]
-        public void ThrowException()
-        {
-            throw new ArgumentException("参数异常");
-        }
-
-        [CustomErrorFilter]
-        public int Add(int a, int b, int c, int d)
-        {
-            throw new NotImplementedException();
-        }
-
-        [CustomErrorFilter]
-        public int Add(int a, int b, int c, int d, int e)
-        {
-            throw new NotImplementedException();
+            var item = list.FirstOrDefault(p => predicate(entity));
+            if (item == null)
+                throw new Exception("列表中不存在更新的项");
+            list.Remove(item);
+            list.Add(entity.ToString());
         }
     }
 
@@ -110,6 +128,7 @@ namespace Test
 
         public override void Execute(MethodParameters[] parameters)
         {
+            Console.WriteLine("=====================================================================");
             if (parameters != null)
                 Console.WriteLine($"执行前过滤器：{nameof(CustomExecutingFilterAttribute)}, Data:{this.Name}, Param:{string.Join(", ", parameters?.Select(p => p.ToString()))}");
             else
