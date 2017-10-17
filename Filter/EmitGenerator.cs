@@ -3,14 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
-using Filter;
-using System.Runtime.Remoting.Contexts;
 using Filter.Attributes;
 using Filter.Model;
-using System.Diagnostics;
-using System.Collections.Concurrent;
 
 namespace Filter
 {
