@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Filter.Attributs
+namespace Filter.Attributes
 {
     /// <summary>
     /// 抽象过滤器基类
