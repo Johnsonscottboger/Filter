@@ -45,7 +45,6 @@
     <Compile Include="Attributes\ExecutingFilterAttribute.cs" />
     <Compile Include="Attributes\FilterAttribute.cs" />
     <Compile Include="EmitGenerator.cs" />
-    <Compile Include="FilterContext.cs" />
     <Compile Include="Model\MethodParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
