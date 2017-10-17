@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Filter.Model;
 
-namespace Filter.Attributs
+namespace Filter.Attributes
 {
     /// <summary>
     /// 方法执行结束过滤器
     /// </summary>
-    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     public abstract class ExecutedFilterAttribute : FilterAttribute
     {
         /// <summary>
